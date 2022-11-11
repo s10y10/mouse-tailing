@@ -6,4 +6,5 @@ export interface ITail {
 export type Options = {
   x: number;
   y: number;
+  [props: string]: any;
 };

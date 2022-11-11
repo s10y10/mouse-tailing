@@ -1,4 +1,4 @@
-import { ITail } from './type';
+import { ITail } from './types';
 import { TAIL_TYPE } from './consts';
 import { createTail } from './tail';
 
@@ -71,7 +71,7 @@ class MouseTail {
     canvasEl.id = 'canvas';
     canvasEl.style.cssText = `
       display:block;
-      position:absolute;
+      position:fixed;
       width:100vw;
       height:100vh;
       pointer-events:none;

@@ -1,5 +1,5 @@
-import type { ITail, Options } from './type';
-import { TAIL_TYPE } from './consts';
+import type { ITail, Options } from '../types';
+import { TAIL_TYPE } from '../consts';
 
 export default class Star implements ITail {
   private type: number; //尾巴类型

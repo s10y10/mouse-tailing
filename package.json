@@ -2,6 +2,7 @@
   "name": "mouse-tailing",
   "private": false,
   "version": "0.0.5",
+  "description": "屏幕鼠标拖尾效果",
   "type": "module",
   "files": [
     "dist"
@@ -14,6 +15,19 @@
       "require": "./dist/mouse-tailing.umd.cjs"
     }
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s10y10/mouse-tailing.git"
+  },
+  "keywords": [
+    "拖尾"
+  ],
+  "author": "s10y10",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/s10y10/mouse-tailing/issues"
+  },
+  "homepage": "https://github.com/s10y10/mouse-tailing",
   "scripts": {
     "dev": "vue-tsc --noEmit && vite --host",
     "build": "vue-tsc --noEmit && vite build",
