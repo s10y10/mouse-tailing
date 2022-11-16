@@ -1,4 +1,4 @@
-import type { ITail, Options } from '../types';
+import type { ITail, TailOptions } from '../types';
 import { TAIL_TYPE } from '../consts';
 
 export default class Star implements ITail {
@@ -16,7 +16,7 @@ export default class Star implements ITail {
   private va: number; //角速度
   public active: boolean; //是否被激活
 
-  constructor(options: Options) {
+  constructor(options: TailOptions) {
     this.type = TAIL_TYPE.STAR;
     this.x = options.x;
     this.y = options.y;

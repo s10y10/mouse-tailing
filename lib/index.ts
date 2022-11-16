@@ -1,14 +1,15 @@
-import { ITail } from './types';
-import { TAIL_TYPE } from './consts';
-import { createTail } from './tail';
+import { ITail, Options } from './types';
+import { createTail } from './tails';
 
-class MouseTail {
+class MouseTailing {
   private canvas: HTMLCanvasElement | null;
   private ctx: CanvasRenderingContext2D | null;
   private w: number;
   private h: number;
   private tailList: Array<ITail>;
-  constructor() {
+  private options: Options;
+  constructor(options: Options) {
+    this.options = options;
     this.canvas = null;
     this.ctx = null;
     this.w = 0;
@@ -43,8 +44,8 @@ class MouseTail {
   }
 
   private drawTail(x: number, y: number) {
-    const { ctx } = this;
-    const tail = createTail(TAIL_TYPE.STAR, { x, y });
+    const { ctx, options } = this;
+    const tail = createTail(options, { x, y });
     tail.render(ctx!);
     this.tailList.push(tail);
   }
@@ -83,7 +84,9 @@ class MouseTail {
     document.body.appendChild(el);
   }
 }
-window.addEventListener('load', () => {
-  new MouseTail();
-});
-export default null;
+
+export const createMouseTailing = (
+  options: Options = { type: 0 }
+): MouseTailing => {
+  return new MouseTailing(options);
+};

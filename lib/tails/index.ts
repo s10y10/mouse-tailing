@@ -1,12 +1,16 @@
 import { TAIL_TYPE } from '../consts';
-import type { ITail, Options } from '../types';
+import type { ITail, TailOptions, Options } from '../types';
 import Star from './star';
 
-export const createTail = (type: number, options: Options): ITail => {
+export const createTail = (
+  options: Options,
+  tailOptions: TailOptions
+): ITail => {
+  const { type } = options;
   switch (type) {
     case TAIL_TYPE.STAR:
-      return new Star(options);
+      return new Star(tailOptions);
     default:
-      return new Star(options);
+      return new Star(tailOptions);
   }
 };

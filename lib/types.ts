@@ -4,6 +4,10 @@ export interface ITail {
 }
 
 export type Options = {
+  type: number;
+};
+
+export type TailOptions = {
   x: number;
   y: number;
   [props: string]: any;

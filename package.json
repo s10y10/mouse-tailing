@@ -1,12 +1,14 @@
 {
   "name": "mouse-tailing",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "屏幕鼠标拖尾效果",
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
+  "typings": "./types/index.d.ts",
   "main": "./dist/mouse-tailing.umd.cjs",
   "module": "./dist/mouse-tailing.js",
   "exports": {
@@ -29,19 +31,15 @@
   },
   "homepage": "https://github.com/s10y10/mouse-tailing",
   "scripts": {
-    "dev": "vue-tsc --noEmit && vite --host",
-    "build": "vue-tsc --noEmit && vite build",
-    "build-s": "vite build",
+    "dev": "vite --host",
+    "build": "vite build",
+    "dts": "tsc -d",
     "preview": "vite preview",
     "publish": "npm publish --access=public --registry=https://registry.npmjs.org/"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
-    "@vitejs/plugin-vue": "^3.1.0",
-    "sass": "^1.55.0",
     "typescript": "^4.6.4",
-    "vite": "^3.1.0",
-    "vue": "^3.2.37",
-    "vue-tsc": "^0.40.4"
+    "vite": "^3.1.0"
   }
 }

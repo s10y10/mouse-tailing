@@ -6,15 +6,7 @@ export default defineConfig({
     reportCompressedSize: false,
     lib: {
       entry: resolve(__dirname, 'lib/index.ts'),
-      name: 'MouseTail',
-    },
-    rollupOptions: {
-      external: ['vue'],
-      output: {
-        globals: {
-          vue: 'Vue',
-        },
-      },
+      name: 'MouseTailing',
     },
   },
 });
