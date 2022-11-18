@@ -1,12 +1,12 @@
 export interface ITail {
-    render(ctx: CanvasRenderingContext2D): void;
-    active: boolean;
+  render(ctx: CanvasRenderingContext2D): void;
+  active: boolean;
 }
 export declare type Options = {
-    type: number;
+  type: number;
 };
 export declare type TailOptions = {
-    x: number;
-    y: number;
-    [props: string]: any;
+  x: number;
+  y: number;
+  [props: string]: any;
 };

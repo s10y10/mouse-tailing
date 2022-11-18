@@ -1,13 +1,12 @@
 import type { ITail, Options, Position } from '../types';
 import { getRandomColor } from '../tools';
 
-export default class Star implements ITail {
+export default class Bubble implements ITail {
   private x: number; //x轴坐标
   private y: number; //y轴坐标
   private vx: number; //x轴速度
   private vy: number; //y轴速度
-  private r: number; //星星内径
-  private R: number; //星星外径
+  private r: number; //圆圈半径
   private color: string; //星星颜色
   private scale: number; //缩放大小
   private opacity: number; //透明度
@@ -23,8 +22,7 @@ export default class Star implements ITail {
     this.y = position.y;
     this.vx = Math.random() * 2 - 1;
     this.vy = Math.random() * 2 - 1;
-    this.r = 6;
-    this.R = 12;
+    this.r = 7;
     this.color = getRandomColor();
     this.scale = Math.random() * 0.5 + 0.5;
     this.opacity = 1;
@@ -34,27 +32,14 @@ export default class Star implements ITail {
     this.active = true;
   }
 
-  /**
-   * 绘制星星
-   * @param {CanvasRenderingContext2D} ctx
-   */
   render(ctx: CanvasRenderingContext2D): void {
-    const { color, scale, x, y, vx, vy, R, r, angle, va, vo } = this;
+    const { color, scale, x, y, vx, vy, r, angle, va, vo } = this;
     ctx.save();
     ctx.translate(x, y);
     ctx.scale(scale, scale);
     ctx.rotate(angle);
     ctx.beginPath();
-    for (let i = 0; i < 5; i++) {
-      ctx.lineTo(
-        Math.cos(((18 + i * 72) / 180) * Math.PI) * R + R,
-        -Math.sin(((18 + i * 72) / 180) * Math.PI) * R + R
-      );
-      ctx.lineTo(
-        Math.cos(((54 + i * 72) / 180) * Math.PI) * r + R,
-        -Math.sin(((54 + i * 72) / 180) * Math.PI) * r + R
-      );
-    }
+    ctx.arc(0, 0, r, 0, 2 * Math.PI);
     ctx.closePath();
     const opacityStr = `00${Math.floor(this.opacity * 255).toString(16)}`.slice(
       -2

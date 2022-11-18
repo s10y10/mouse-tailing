@@ -3,12 +3,17 @@ export interface ITail {
   active: boolean;
 }
 
-export type Options = {
-  type: number;
-};
+export type TailType = 'star' | 'circle' | 'heart' | 'icon';
 
-export type TailOptions = {
+export interface Options {
+  type?: TailType;
+  count?: number;
+  duration?: number;
+  url?: string;
+  resource?: CanvasImageSource;
+}
+
+export interface Position {
   x: number;
   y: number;
-  [props: string]: any;
-};
+}

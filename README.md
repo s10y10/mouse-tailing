@@ -20,7 +20,9 @@ createMouseTailing()
 
 - <b>options:</b> 可选，Object 类型，用于配置拖尾的形式，配置项如下：
 
-|参数  | 说明 |类型|可选值|默认值|
-|------|-----|---|------|------|
-|type  |拖尾类型|string|star|star|
-|renderer|自定义渲染器|function|-|undefind|
+|参数  | 说明 |类型|可选值|默认值|必选|
+|------|-----|---|------|------|----|
+|type  |拖尾类型|string|star/circle/heart/icon|star|false|
+|count|拖尾数量|number|-|1|false|
+|duration|拖尾存在时间(ms)|number|-|1000|false|
+|url|当type=icon时需要,icon的url地址|string|-|-|false|
