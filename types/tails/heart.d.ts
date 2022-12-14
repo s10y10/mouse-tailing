@@ -1,20 +1,10 @@
-import type { ITail, Options, Position } from '../types';
-export default class Heart implements ITail {
-    private x;
-    private y;
-    private vx;
-    private vy;
+import type { Options, Position } from '../types';
+import BaseTail from './base';
+export default class Heart extends BaseTail {
     private r;
     private vertices;
     private color;
-    private scale;
-    private opacity;
-    private angle;
-    private va;
-    private vo;
-    private options;
     private piece;
-    active: boolean;
     constructor(options: Options, position: Position);
     render(ctx: CanvasRenderingContext2D): void;
 }

@@ -1,37 +1,17 @@
-import type { ITail, Options, Position } from '../types';
+import type { Options, Position } from '../types';
 import { getRandomColor } from '../tools';
+import BaseTail from './base';
 
-export default class Star implements ITail {
-  private x: number; //x轴坐标
-  private y: number; //y轴坐标
-  private vx: number; //x轴速度
-  private vy: number; //y轴速度
+export default class Star extends BaseTail {
   private r: number; //星星内径
   private R: number; //星星外径
   private color: string; //星星颜色
-  private scale: number; //缩放大小
-  private opacity: number; //透明度
-  private angle: number; //角度
-  private va: number; //角速度
-  private vo: number; //透明度变化速度
-  private options: Options; //参数
-  public active: boolean; //是否被激活
 
   constructor(options: Options, position: Position) {
-    this.options = options;
-    this.x = position.x;
-    this.y = position.y;
-    this.vx = Math.random() * 2 - 1;
-    this.vy = Math.random() * 2 - 1;
+    super(options, position);
     this.r = 6;
     this.R = 12;
     this.color = getRandomColor();
-    this.scale = Math.random() * 0.5 + 0.5;
-    this.opacity = 1;
-    this.angle = 0;
-    this.va = Math.random() * 0.02 - 0.01;
-    this.vo = this.options.duration! / 60 / 1000;
-    this.active = true;
   }
 
   /**

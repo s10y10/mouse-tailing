@@ -1,19 +1,9 @@
-import type { ITail, Options, Position } from '../types';
-export default class Star implements ITail {
-    private x;
-    private y;
-    private vx;
-    private vy;
+import type { Options, Position } from '../types';
+import BaseTail from './base';
+export default class Star extends BaseTail {
     private r;
     private R;
     private color;
-    private scale;
-    private opacity;
-    private angle;
-    private va;
-    private vo;
-    private options;
-    active: boolean;
     constructor(options: Options, position: Position);
     /**
      * 绘制星星

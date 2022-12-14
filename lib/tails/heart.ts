@@ -1,35 +1,17 @@
-import type { ITail, Options, Position } from '../types';
+import type { Options, Position } from '../types';
+import BaseTail from './base';
 
-export default class Heart implements ITail {
-  private x: number; //x轴坐标
-  private y: number; //y轴坐标
-  private vx: number; //x轴速度
-  private vy: number; //y轴速度
+export default class Heart extends BaseTail {
   private r: number; //心的大小
   private vertices: Array<{ x: number; y: number }>; //心形的向量
   private color: string; //心的颜色
-  private scale: number; //缩放大小
-  private opacity: number; //透明度
-  private angle: number; //角度
-  private va: number; //角速度
-  private vo: number; //透明度变化速度
-  private options: Options; //参数
   private piece: number; //心形的分片
-  public active: boolean; //是否被激活
 
   constructor(options: Options, position: Position) {
-    this.options = options;
-    this.x = position.x;
-    this.y = position.y;
+    super(options, position);
     this.r = 1;
-    this.vx = Math.random() * 2 - 1;
-    this.vy = Math.random() * 2 - 1;
     this.color = '#ff4022';
-    this.scale = Math.random() * 0.5 + 0.5;
-    this.opacity = 1;
     this.angle = Math.PI;
-    this.va = Math.random() * 0.02 - 0.01;
-    this.vo = this.options.duration! / 60 / 1000;
     this.vertices = [];
     this.piece = 20;
     for (let i = 0; i < this.piece; i++) {
@@ -45,7 +27,6 @@ export default class Heart implements ITail {
       };
       this.vertices.push(vector);
     }
-    this.active = true;
   }
 
   render(ctx: CanvasRenderingContext2D): void {
