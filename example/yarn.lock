@@ -3,6 +3,6 @@
 
 
 mouse-tailing@0.0.8:
-  version "0.0.7"
-  resolved "https://registry.npmmirror.com/mouse-tailing/-/mouse-tailing-0.0.7.tgz#94f80b3d25ea4329e9778176cb6ae77a1afdbb4d"
-  integrity sha512-g5P424bLWa82iKsMWIeK55QJC+j4zxn/XVlN/XwRGwoP2tiqixQTwxPJH1V0IIBlr0ENnLygtMEp2QOfbJ5b7g==
+  version "0.0.8"
+  resolved "https://registry.npmmirror.com/mouse-tailing/-/mouse-tailing-0.0.8.tgz#b04aef77982d1fb948c2362213e05ab017504e07"
+  integrity sha512-hNKB2w8QB3SU3qurZ6ugu7b07JbBWfuhT/QwIVnJDeLeJDnsSTBliX+zdlCL3SDXlAQVDog/05wRJj6d8XT35A==
