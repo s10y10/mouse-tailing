@@ -2,6 +2,8 @@
 
 快速实现页面中鼠标拖尾的效果
 
+[![mouse-tailing Example](https://raw.githubusercontent.com/s10y10/mouse-tailing/master/example/example.gif)](https://github.com/s10y10/mouse-tailing)
+
 ## 安装
 
 ```
