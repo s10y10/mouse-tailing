@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-mouse-tailing@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.npmmirror.com/mouse-tailing/-/mouse-tailing-0.0.6.tgz#a18b4773256cc76b66acab2b2912355f7bf2aba1"
-  integrity sha512-RLvy1soU9/f51xJxFq9iPUCdDRgbuwuzxgBUcACdaNTPKOOP0nyNX2Fm+k86RlOQzyPUGSGYZyt5A1PD9d3nxg==
+mouse-tailing@0.0.8:
+  version "0.0.7"
+  resolved "https://registry.npmmirror.com/mouse-tailing/-/mouse-tailing-0.0.7.tgz#94f80b3d25ea4329e9778176cb6ae77a1afdbb4d"
+  integrity sha512-g5P424bLWa82iKsMWIeK55QJC+j4zxn/XVlN/XwRGwoP2tiqixQTwxPJH1V0IIBlr0ENnLygtMEp2QOfbJ5b7g==
