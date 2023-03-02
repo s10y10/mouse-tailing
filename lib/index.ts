@@ -125,12 +125,12 @@ class MouseTailing {
   private handleMove(e: MouseEvent | TouchEvent): void {
     let x =
       e instanceof MouseEvent
-        ? e.offsetX
-        : e.changedTouches[0] && e.changedTouches[0].clientX;
+        ? e.pageX
+        : e.changedTouches[0] && e.changedTouches[0].pageX;
     let y =
       e instanceof MouseEvent
-        ? e.offsetY
-        : e.changedTouches[0] && e.changedTouches[0].clientY;
+        ? e.pageY
+        : e.changedTouches[0] && e.changedTouches[0].pageY;
     this.drawTail(x, y);
   }
 
@@ -147,6 +147,8 @@ class MouseTailing {
       width:100vw;
       height:100vh;
       pointer-events:none;
+      left:0;
+      top:0;
       ${getFilter(this.options.type!)}
     `;
     return canvasEl;
