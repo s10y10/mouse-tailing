@@ -26,5 +26,5 @@ export default abstract class BaseTail implements ITail {
     this.active = true;
   }
 
-  abstract render(ctx: CanvasRenderingContext2D, pos: Position): void;
+  abstract render(ctx: CanvasRenderingContext2D): void;
 }

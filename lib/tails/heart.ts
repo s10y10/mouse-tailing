@@ -2,18 +2,15 @@ import type { Options, Position } from '../types';
 import BaseTail from './base';
 
 export default class Heart extends BaseTail {
-  private r: number; //心的大小
+  private r: number = 1; //心的大小
   private vertices: Array<{ x: number; y: number }>; //心形的向量
-  private color: string; //心的颜色
-  private piece: number; //心形的分片
+  private color: string = '#ff4022'; //心的颜色
+  private piece: number = 20; //心形的分片
 
   constructor(options: Options, position: Position) {
     super(options, position);
-    this.r = 1;
-    this.color = '#ff4022';
     this.angle = Math.PI;
     this.vertices = [];
-    this.piece = 20;
     for (let i = 0; i < this.piece; i++) {
       var step = (i / this.piece) * (Math.PI * 2);
       var vector = {

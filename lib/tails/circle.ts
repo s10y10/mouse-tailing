@@ -3,12 +3,11 @@ import { getRandomColor } from '../tools';
 import BaseTail from './base';
 
 export default class Bubble extends BaseTail {
-  private r: number; //圆圈半径
+  private r: number = 7; //圆圈半径
   private color: string; //星星颜色
 
   constructor(options: Options, position: Position) {
     super(options, position);
-    this.r = 7;
     this.color = getRandomColor();
   }
 

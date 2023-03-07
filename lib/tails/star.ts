@@ -3,14 +3,12 @@ import { getRandomColor } from '../tools';
 import BaseTail from './base';
 
 export default class Star extends BaseTail {
-  private r: number; //星星内径
-  private R: number; //星星外径
+  private r: number = 6; //星星内径
+  private R: number = 12; //星星外径
   private color: string; //星星颜色
 
   constructor(options: Options, position: Position) {
     super(options, position);
-    this.r = 6;
-    this.R = 12;
     this.color = getRandomColor();
   }
 

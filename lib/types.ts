@@ -1,12 +1,12 @@
 export interface ITail {
-  render(ctx: CanvasRenderingContext2D, pos?: Position): void;
+  render(ctx: CanvasRenderingContext2D): void;
   active: boolean;
 }
 
 export type TailType = 'star' | 'circle' | 'heart' | 'icon' | 'sky';
 
 export interface Options {
-  el?: HTMLElement;
+  el?: HTMLElement | string;
   type?: TailType;
   count?: number;
   duration?: number;

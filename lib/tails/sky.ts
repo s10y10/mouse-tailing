@@ -9,29 +9,50 @@ type SkyStar = {
 };
 
 export default class Sky extends BaseTail {
-  private r: number; //星星半径
-  private color: string; //星星颜色
+  private r: number = 2; //星星半径
+  private color: string = '#ffffff'; //星星颜色
   private num: number = 100;
   private stars: Array<SkyStar> = [];
-  private w: number;
-  private h: number;
+  private w: number = 0;
+  private h: number = 0;
   private lineColor: string = '#ffffff';
   private lineWidth: number = 0.8;
-  private lastPos: Position = { x: -1, y: -1 };
+  private lastPos: Position | null = null;
   private limitDistance: number = 100;
+  private container: HTMLElement = document.body;
 
-  constructor(
-    ctx: CanvasRenderingContext2D,
-    options: Options,
-    position: Position
-  ) {
+  constructor(options: Options, position: Position) {
     super(options, position);
-    this.r = 2;
-    this.color = '#ffffff';
+    this.initContainer();
+    this.initEvent();
+    this.setStar();
+  }
 
-    this.w = window.innerWidth;
-    this.h = window.innerHeight;
+  private initContainer() {
+    const { el } = this.options;
+    if (typeof el === 'string') {
+      this.container = document.querySelector(el) || this.container;
+    }
+  }
 
+  private initEvent() {
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  private handleResize() {
+    if (
+      this.w !== this.container.offsetWidth ||
+      this.h !== this.container.offsetHeight
+    ) {
+      this.setStar();
+    }
+  }
+
+  private setStar() {
+    this.stars.length = 0;
+    this.lastPos = null;
+    this.w = this.container.offsetWidth;
+    this.h = this.container.offsetHeight;
     // 创建星空
     for (let i = 0; i < this.num; i++) {
       this.stars[i] = {
@@ -40,7 +61,6 @@ export default class Sky extends BaseTail {
         x0: Math.random() * 0.5 - 0.25,
         y0: Math.random() * 0.5 - 0.25,
       };
-      this.drawStar(ctx, this.stars[i]);
     }
   }
 
@@ -54,16 +74,16 @@ export default class Sky extends BaseTail {
     ctx.restore();
   }
 
-  private link(ctx: CanvasRenderingContext2D, pos: Position) {
+  private link(ctx: CanvasRenderingContext2D) {
+    if (!this.lastPos) return;
     const { num, stars, lineColor, lineWidth } = this;
-    const { x: centerX, y: centerY } = pos || this.lastPos;
+    const { x: centerX, y: centerY } = this.lastPos;
     for (let i = 0; i < num; i++) {
       // 勾股定理算相邻距离
       var distance = Math.pow(
         Math.pow(centerX - stars[i].x, 2) + Math.pow(centerY - stars[i].y, 2),
         0.5
       );
-      console.log(centerX, centerY, distance);
       if (distance < this.limitDistance) {
         ctx.save();
         ctx.beginPath();
@@ -78,14 +98,18 @@ export default class Sky extends BaseTail {
   }
 
   /**
+   * 设置连线的计算点
+   * @param pos
+   */
+  setPos(pos: Position) {
+    this.lastPos = pos;
+  }
+
+  /**
    * 绘制星空
    * @param {CanvasRenderingContext2D} ctx
    */
-  render(ctx: CanvasRenderingContext2D, pos: Position): void {
-    if (pos) {
-      this.lastPos = pos;
-      return;
-    }
+  render(ctx: CanvasRenderingContext2D): void {
     const { num, stars, w, h } = this;
     for (let i = 0; i < num; i++) {
       const star = stars[i];
@@ -97,6 +121,6 @@ export default class Sky extends BaseTail {
       star.y += star.y0;
       this.drawStar(ctx, stars[i]);
     }
-    this.link(ctx, this.lastPos);
+    this.link(ctx);
   }
 }
