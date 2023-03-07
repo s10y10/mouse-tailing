@@ -66,7 +66,7 @@ class MouseTailing {
   private initCanvas(): void {
     this.canvas = this.createCanvas();
     this.ctx = this.canvas.getContext('2d');
-    this.appendToBody(this.canvas);
+    this.appendCanvas(this.canvas, this.options.el || document.body);
   }
 
   /**
@@ -104,9 +104,28 @@ class MouseTailing {
     const { ctx, options } = this;
     const { count } = options;
     for (let i = 0; i < count!; i++) {
-      const tail = createTail(options, { x, y });
-      tail.render(ctx!);
+      const tail = createTail(ctx!, options, { x, y });
       this.tailList.push(tail);
+    }
+  }
+
+  /**
+   * 添加连线
+   * @param {number} x x坐标
+   * @param {number} y y坐标
+   */
+  private drawLine(x: number, y: number) {
+    const { ctx, options } = this;
+    const { count } = options;
+    if (this.tailList.length === 0) {
+      for (let i = 0; i < count!; i++) {
+        const tail = createTail(ctx!, options, { x, y });
+        this.tailList.push(tail);
+      }
+    } else {
+      this.tailList.forEach((tail) => {
+        tail.render(ctx!, { x, y });
+      });
     }
   }
 
@@ -131,7 +150,12 @@ class MouseTailing {
       e instanceof MouseEvent
         ? e.pageY
         : e.changedTouches[0] && e.changedTouches[0].pageY;
-    this.drawTail(x, y);
+
+    if (this.options.type === 'sky') {
+      this.drawLine(x, y);
+    } else {
+      this.drawTail(x, y);
+    }
   }
 
   /**
@@ -143,12 +167,13 @@ class MouseTailing {
     canvasEl.id = 'canvas';
     canvasEl.style.cssText = `
       display:block;
-      position:fixed;
+      position:absolute;
       width:100vw;
       height:100vh;
       pointer-events:none;
       left:0;
       top:0;
+      z-index:99999;
       ${getFilter(this.options.type!)}
     `;
     return canvasEl;
@@ -156,10 +181,23 @@ class MouseTailing {
 
   /**
    * 添加元素到body上
-   * @param el 要添加到body的元素
+   * @param canvas 要添加的canvas
+   * @param el canvas的容器
    */
-  private appendToBody(el: HTMLElement): void {
-    document.body.appendChild(el);
+  private appendCanvas(
+    canvas: HTMLCanvasElement,
+    el: HTMLElement | string
+  ): void {
+    try {
+      if (typeof el === 'string') {
+        const container = document.querySelector(el);
+        container && container.appendChild(canvas);
+      } else {
+        el.appendChild(canvas);
+      }
+    } catch (e) {
+      console.error(e);
+    }
   }
 }
 
