@@ -2,8 +2,9 @@ export interface ITail {
     render(ctx: CanvasRenderingContext2D): void;
     active: boolean;
 }
-export declare type TailType = 'star' | 'circle' | 'heart' | 'icon';
+export type TailType = 'star' | 'circle' | 'heart' | 'icon' | 'sky';
 export interface Options {
+    el?: HTMLElement | string;
     type?: TailType;
     count?: number;
     duration?: number;

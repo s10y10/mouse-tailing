@@ -11,14 +11,14 @@ type SkyStar = {
 export default class Sky extends BaseTail {
   private r: number = 2; //星星半径
   private color: string = '#ffffff'; //星星颜色
-  private num: number = 100;
+  private num: number = 120;
   private stars: Array<SkyStar> = [];
   private w: number = 0;
   private h: number = 0;
   private lineColor: string = '#ffffff';
   private lineWidth: number = 0.8;
   private lastPos: Position | null = null;
-  private limitDistance: number = 100;
+  private limitDistance: number = 0;
   private container: HTMLElement = document.body;
 
   constructor(options: Options, position: Position) {
@@ -53,13 +53,14 @@ export default class Sky extends BaseTail {
     this.lastPos = null;
     this.w = this.container.offsetWidth;
     this.h = this.container.offsetHeight;
+    this.limitDistance = (this.w + this.h) / 2 / 6;
     // 创建星空
     for (let i = 0; i < this.num; i++) {
       this.stars[i] = {
         x: Math.random() * this.w,
         y: Math.random() * this.h,
-        x0: Math.random() * 0.5 - 0.25,
-        y0: Math.random() * 0.5 - 0.25,
+        x0: Math.random() * 0.8 - 0.4,
+        y0: Math.random() * 0.8 - 0.4,
       };
     }
   }
@@ -84,6 +85,7 @@ export default class Sky extends BaseTail {
         Math.pow(centerX - stars[i].x, 2) + Math.pow(centerY - stars[i].y, 2),
         0.5
       );
+
       if (distance < this.limitDistance) {
         ctx.save();
         ctx.beginPath();
