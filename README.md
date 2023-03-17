@@ -29,3 +29,4 @@ createMouseTailing()
 |count|拖尾数量|number|-|1|false|
 |duration|拖尾存在时间(ms)|number|-|1000|false|
 |url|当type=icon时需要,icon的url地址|string|-|-|false|
+|className|给canvas一个识别用class|string|-|canvas-tailing|false|

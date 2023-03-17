@@ -8,6 +8,7 @@ const defaultOptions: Options = {
   type: 'star',
   count: 1,
   duration: 1000,
+  className: 'canvas-tailing',
 };
 /**
  * 创建鼠标拖尾

@@ -76,7 +76,7 @@ class MouseTailing {
    * 初始化canvas并添加到body上
    */
   private initCanvas(): void {
-    this.canvas = createCanvas(this.options.type!);
+    this.canvas = createCanvas(this.options);
     this.ctx = this.canvas.getContext('2d');
     appendChild(this.container!, this.canvas);
   }

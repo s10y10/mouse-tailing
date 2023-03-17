@@ -11,6 +11,7 @@ export interface Options {
   count?: number;
   duration?: number;
   url?: string;
+  className?: string;
   resource?: CanvasImageSource;
 }
 

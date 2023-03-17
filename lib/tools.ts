@@ -1,4 +1,4 @@
-import type { TailType } from './types';
+import type { TailType, Options } from './types';
 
 /**
  * 随机一个6位16进制的颜色
@@ -31,8 +31,12 @@ export const getFilter = (type: TailType): string => {
  * 创建canvas
  * @returns {HTMLCanvasElement} Canvas对象
  */
-export const createCanvas = (type: TailType): HTMLCanvasElement => {
+export const createCanvas = ({
+  type,
+  className,
+}: Options): HTMLCanvasElement => {
   const canvasEl: HTMLCanvasElement = document.createElement('canvas');
+  canvasEl.className = className!;
   canvasEl.style.cssText = `
     display:block;
     position:absolute;
@@ -42,7 +46,7 @@ export const createCanvas = (type: TailType): HTMLCanvasElement => {
     left:0;
     top:0;
     z-index:99999;
-    ${getFilter(type)}
+    ${getFilter(type!)}
   `;
   return canvasEl;
 };
