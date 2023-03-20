@@ -36,6 +36,7 @@ export default class Sky extends BaseTail {
   }
 
   private initEvent() {
+    this.handleResize = this.handleResize.bind(this);
     window.addEventListener('resize', this.handleResize);
   }
 
