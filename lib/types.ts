@@ -7,6 +7,7 @@ export type TailType = 'star' | 'circle' | 'heart' | 'icon' | 'sky';
 
 export interface Options {
   el?: HTMLElement | string;
+  color?: string;
   type?: TailType;
   count?: number;
   duration?: number;

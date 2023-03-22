@@ -26,6 +26,7 @@ createMouseTailing()
 |------|-----|---|------|------|----|
 |type  |拖尾类型|string|star/circle/heart/icon/sky|star|false|
 |el | 显示拖尾用的dom容器|string/HTMLElement|-|document.body|false|
+|color| 覆盖默认颜色,Hex格式 | string | #000000 - #FFFFFF | 随类型变化 |false |
 |count|拖尾数量|number|-|1|false|
 |duration|拖尾存在时间(ms)|number|-|1000|false|
 |url|当type=icon时需要,icon的url地址|string|-|-|false|

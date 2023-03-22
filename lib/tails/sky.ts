@@ -10,12 +10,12 @@ type SkyStar = {
 
 export default class Sky extends BaseTail {
   private r: number = 2; //星星半径
-  private color: string = '#ffffff'; //星星颜色
+  private color: string; //星星颜色
   private num: number = 120;
   private stars: Array<SkyStar> = [];
   private w: number = 0;
   private h: number = 0;
-  private lineColor: string = '#ffffff';
+  private lineColor: string;
   private lineWidth: number = 0.8;
   private lastPos: Position | null = null;
   private limitDistance: number = 0;
@@ -23,6 +23,8 @@ export default class Sky extends BaseTail {
 
   constructor(options: Options, position: Position) {
     super(options, position);
+    this.color = options.color || '#ffffff';
+    this.lineColor = this.color;
     this.initContainer();
     this.initEvent();
     this.setStar();

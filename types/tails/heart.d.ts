@@ -6,5 +6,6 @@ export default class Heart extends BaseTail {
     private color;
     private piece;
     constructor(options: Options, position: Position);
+    private initParams;
     render(ctx: CanvasRenderingContext2D): void;
 }

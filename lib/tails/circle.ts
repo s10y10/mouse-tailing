@@ -8,11 +8,11 @@ export default class Bubble extends BaseTail {
 
   constructor(options: Options, position: Position) {
     super(options, position);
-    this.color = getRandomColor();
+    this.color = options.color || getRandomColor();
   }
 
   render(ctx: CanvasRenderingContext2D): void {
-    const { color, scale, x, y, vx, vy, r, angle, va, vo } = this;
+    const { color, scale, x, y, vx, vy, r, angle, va, vo, opacity } = this;
     ctx.save();
     ctx.translate(x, y);
     ctx.scale(scale, scale);
@@ -20,9 +20,7 @@ export default class Bubble extends BaseTail {
     ctx.beginPath();
     ctx.arc(0, 0, r, 0, 2 * Math.PI);
     ctx.closePath();
-    const opacityStr = `00${Math.floor(this.opacity * 255).toString(16)}`.slice(
-      -2
-    );
+    const opacityStr = `00${Math.floor(opacity * 255).toString(16)}`.slice(-2);
     ctx.fillStyle = `${color}${opacityStr}`;
     ctx.fill();
     ctx.restore();

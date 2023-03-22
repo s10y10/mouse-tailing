@@ -22,7 +22,7 @@ export default abstract class BaseTail implements ITail {
     this.opacity = 1;
     this.angle = 0;
     this.va = Math.random() * 0.02 - 0.01;
-    this.vo = this.options.duration! / 60 / 1000;
+    this.vo = 1000 / this.options.duration! / 60;
     this.active = true;
   }
 
