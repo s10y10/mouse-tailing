@@ -4,8 +4,10 @@ import BaseTail from './base';
 type SkyStar = {
   x: number;
   y: number;
+  o: number;
   x0: number;
   y0: number;
+  o0: number;
 };
 
 export default class Sky extends BaseTail {
@@ -62,18 +64,23 @@ export default class Sky extends BaseTail {
       this.stars[i] = {
         x: Math.random() * this.w,
         y: Math.random() * this.h,
+        o: 1,
         x0: Math.random() * 0.8 - 0.4,
         y0: Math.random() * 0.8 - 0.4,
+        o0: (Math.random() - 0.5) / 60,
       };
     }
   }
 
   private drawStar(ctx: CanvasRenderingContext2D, star: SkyStar) {
-    const { x, y } = star;
+    const { x, y, o } = star;
+    const { color } = this;
     ctx.save();
     ctx.beginPath();
     ctx.fillStyle = this.color;
     ctx.arc(x, y, this.r, 0, Math.PI * 2, true);
+    const opacityStr = `00${Math.floor(o * 255).toString(16)}`.slice(-2);
+    ctx.fillStyle = `${color}${opacityStr}`;
     ctx.fill();
     ctx.restore();
   }
@@ -121,9 +128,12 @@ export default class Sky extends BaseTail {
       // 当星星到达屏幕边界时, 转换移动方向
       star.x0 = star.x < 0 || star.x > w ? -star.x0 : star.x0;
       star.y0 = star.y < 0 || star.y > h ? -star.y0 : star.y0;
+      star.o0 = star.o <= 0 || star.o >= 1 ? -star.o0 : star.o0;
       // 使星星移动
       star.x += star.x0;
       star.y += star.y0;
+      star.o += star.o0;
+      star.o = star.o < 0 ? 0 : star.o > 1 ? 1 : star.o;
       this.drawStar(ctx, stars[i]);
     }
     this.link(ctx);

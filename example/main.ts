@@ -5,4 +5,4 @@ import { createMouseTailing } from '../lib';
 // createMouseTailing({ type: 'sky', el: '.container-sky' });
 // createMouseTailing({ type: 'star', el: '.container-star' });
 
-createMouseTailing({ type: 'sky', color: '#fff000', duration: 2000 });
+createMouseTailing({ type: 'sky' });
