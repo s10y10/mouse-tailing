@@ -1,5 +1,5 @@
-import { Options } from './types';
 import MouseTailing from './tailing';
+import { Options } from './types';
 /**
  * 创建鼠标拖尾
  * @param {Options} options 创建拖尾的配置项

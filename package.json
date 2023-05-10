@@ -1,7 +1,7 @@
 {
   "name": "mouse-tailing",
   "private": false,
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "屏幕鼠标拖尾效果",
   "type": "module",
   "files": [
@@ -38,8 +38,8 @@
     "publish": "npm publish --access=public --registry=https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "@types/node": "^18.11.9",
-    "typescript": "^4.6.4",
-    "vite": "^4.1.4"
+    "@types/node": "^20.1.1",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.5"
   }
 }

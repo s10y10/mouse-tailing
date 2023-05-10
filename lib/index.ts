@@ -1,5 +1,5 @@
-import { Options } from './types';
 import MouseTailing from './tailing';
+import { Options } from './types';
 
 /**
  * 默认参数

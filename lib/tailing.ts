@@ -1,6 +1,7 @@
-import { ITail, Options } from './types';
 import { createTail } from './tails';
 import { appendChild, createCanvas } from './tools';
+import { ITail, Options } from './types';
+
 import type Sky from './tails/sky';
 
 class MouseTailing {
@@ -8,9 +9,10 @@ class MouseTailing {
   private ctx: CanvasRenderingContext2D | null = null;
   private w: number = 0;
   private h: number = 0;
-  private tailList: Array<ITail> = [];
-  private options: Options;
-  private container: HTMLElement = document.body;
+  private tailList: Array<ITail> | null = [];
+  private options: Options | null;
+  private container: HTMLElement | null = document.body;
+  private rafId: number = -1;
   constructor(options: Options) {
     this.options = options;
     const { el } = this.options;
@@ -37,7 +39,7 @@ class MouseTailing {
    * 初始绘制
    */
   private initDraw() {
-    const { type } = this.options;
+    const { type } = this.options!;
     if (type === 'sky') {
       this.drawTail(0, 0);
     }
@@ -48,11 +50,11 @@ class MouseTailing {
    */
   private loadResource() {
     return new Promise((resolve, reject) => {
-      const { type, url } = this.options;
+      const { type, url } = this.options!;
       if (type === 'icon' && url) {
         const img = new Image();
         img.onload = () => {
-          this.options.resource = img;
+          this.options!.resource = img;
           resolve(true);
         };
         img.onerror = reject;
@@ -76,7 +78,7 @@ class MouseTailing {
    * 初始化canvas并添加到body上
    */
   private initCanvas(): void {
-    this.canvas = createCanvas(this.options);
+    this.canvas = createCanvas(this.options!);
     this.ctx = this.canvas.getContext('2d');
     appendChild(this.container!, this.canvas);
   }
@@ -86,8 +88,17 @@ class MouseTailing {
    */
   private initEvents(): void {
     window.addEventListener('resize', this.handleResize);
-    this.container.addEventListener('mousemove', this.handleMove);
-    this.container.addEventListener('touchmove', this.handleMove);
+    this.container!.addEventListener('mousemove', this.handleMove);
+    this.container!.addEventListener('touchmove', this.handleMove);
+  }
+
+  /**
+   * 移除事件侦听
+   */
+  private removeEvents(): void {
+    window.removeEventListener('resize', this.handleResize);
+    this.container!.removeEventListener('mousemove', this.handleMove);
+    this.container!.removeEventListener('touchmove', this.handleMove);
   }
 
   /**
@@ -115,8 +126,8 @@ class MouseTailing {
         ? e.pageY
         : e.changedTouches[0] && e.changedTouches[0].pageY;
 
-    x = x - this.container.offsetLeft;
-    y = y - this.container.offsetTop;
+    x = x - this.container!.offsetLeft;
+    y = y - this.container!.offsetTop;
     this.drawTail(x, y);
   }
 
@@ -126,15 +137,15 @@ class MouseTailing {
   private render(): void {
     const { ctx, w, h } = this;
     ctx!.clearRect(0, 0, w, h);
-    for (let i = 0; i < this.tailList.length; i++) {
-      const tail = this.tailList[i];
+    for (let i = 0; i < this.tailList!.length; i++) {
+      const tail = this.tailList![i];
       tail.render(ctx!);
       if (!tail.active) {
-        this.tailList.splice(i, 1);
+        this.tailList!.splice(i, 1);
         i--;
       }
     }
-    requestAnimationFrame(this.render);
+    this.rafId = requestAnimationFrame(this.render);
   }
 
   /**
@@ -144,17 +155,34 @@ class MouseTailing {
    */
   private drawTail(x: number, y: number) {
     const { options } = this;
-    const { count, type } = options;
+    const { count, type } = options!;
     if (type === 'sky') {
-      this.tailList.forEach((tail) => {
+      this.tailList!.forEach((tail) => {
         (tail as Sky).setPos({ x, y });
       });
-      if (this.tailList.length) return;
+      if (this.tailList!.length) return;
     }
     for (let i = 0; i < count!; i++) {
-      const tail = createTail(options, { x, y });
-      this.tailList.push(tail);
+      const tail = createTail(options!, { x, y });
+      this.tailList!.push(tail);
     }
+  }
+
+  /**
+   * 销毁当前拖尾
+   */
+  destroy() {
+    cancelAnimationFrame(this.rafId);
+    this.removeEvents();
+    this.tailList!.length = 0;
+    this.tailList = null;
+    this.canvas!.width = 0;
+    this.canvas!.height = 0;
+    this.canvas!.remove();
+    this.canvas = null;
+    this.ctx = null;
+    this.options = null;
+    this.container = null;
   }
 }
 

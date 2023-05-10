@@ -7,6 +7,7 @@ declare class MouseTailing {
     private tailList;
     private options;
     private container;
+    private rafId;
     constructor(options: Options);
     /**
      * 初始化
@@ -33,6 +34,10 @@ declare class MouseTailing {
      */
     private initEvents;
     /**
+     * 移除事件侦听
+     */
+    private removeEvents;
+    /**
      * 重置canvas的宽高
      */
     private handleResize;
@@ -51,5 +56,9 @@ declare class MouseTailing {
      * @param {number} y y坐标
      */
     private drawTail;
+    /**
+     * 销毁当前拖尾
+     */
+    destroy(): void;
 }
 export default MouseTailing;
