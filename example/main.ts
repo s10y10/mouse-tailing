@@ -7,7 +7,7 @@ import { createMouseTailing } from '../lib';
 // createMouseTailing({ type: 'sky', el: '.container-sky' });
 // createMouseTailing({ type: 'star', el: '.container-star' });
 
-const t = createMouseTailing({ type: 'sky' });
+const t = createMouseTailing({ type: 'heart', count: 1, color: '#ffff00' });
 // setTimeout(() => {
 //   t.destroy();
 // }, 5e3);

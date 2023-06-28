@@ -31,9 +31,3 @@ createMouseTailing()
 |duration|拖尾存在时间(ms)|number|-|1000|false|
 |url|当type=icon时需要,icon的url地址|string|-|-|false|
 |className|给canvas一个识别用class|string|-|canvas-tailing|false|
-
-## 0.1.6 新增destroy方法
-## 0.1.5 增加sky星星闪烁
-## 0.1.4 增加color配置
-## 0.1.3 修复resize响应
-## 0.1.2 增加自定义class参数
