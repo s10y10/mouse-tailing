@@ -10,24 +10,39 @@
 npm install --save mouse-tailing
 ```
 
-## 使用
+## mouse-tailing API
+### createMouseTailing 创建鼠标拖尾
 
 ```
 import { createMouseTailing } from 'mouse-tailing'
-createMouseTailing()
+createMouseTailing(TailConfig)
 ```
 
-## 参数
-`createMouseTailing(options)` 接受一个参数
+### `createMouseTailing()` 接受一个 <b>TailConfig</b> 对象类型
 
-- <b>options:</b> 可选，Object 类型，用于配置拖尾的形式，配置项如下：
+### TailConfig 拖尾配置，所有字段均为非必传项
 
-|参数  | 说明 |类型|可选值|默认值|必选|
-|------|-----|---|------|------|----|
-|type  |拖尾类型|string|star/circle/heart/icon/sky|star|false|
-|el | 显示拖尾用的dom容器|string/HTMLElement|-|document.body|false|
-|color| 覆盖默认颜色,Hex格式 | string | #000000 - #FFFFFF | 随类型变化 |false |
-|count|拖尾数量|number|-|1|false|
-|duration|拖尾存在时间(ms)|number|-|1000|false|
-|url|当type=icon时需要,icon的url地址|string|-|-|false|
-|className|给canvas一个识别用class|string|-|canvas-tailing|false|
+```
+{
+    // 拖尾类型 star|circle|heart|icon|sky
+    type:'star',
+
+    // 显示拖尾用的dom容器,可以直接传一个HTMLElement对象或者一个querySelector字符串
+    el:document.body,
+
+    // 覆盖默认颜色, Hex颜色格式字符串
+    color: '#FFFFFF',
+
+    // 每次移动过程创建拖尾的数量
+    count:1,
+
+    // 拖尾存在的时间,毫秒
+    duration:1000,
+
+    // 给canvas画布一个识别用class类名
+    className:'canvas-tailing'
+
+    // 当type=icon时,需要传入icon的url
+    url:'http://xxxxxx'
+}
+```

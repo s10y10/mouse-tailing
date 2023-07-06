@@ -1,4 +1,4 @@
-import type { TailType, Options } from './types';
+import type { TailType, TailConfig } from './types';
 
 /**
  * 随机一个6位16进制的颜色
@@ -34,7 +34,7 @@ export const getFilter = (type: TailType): string => {
 export const createCanvas = ({
   type,
   className,
-}: Options): HTMLCanvasElement => {
+}: TailConfig): HTMLCanvasElement => {
   const canvasEl: HTMLCanvasElement = document.createElement('canvas');
   canvasEl.className = className!;
   canvasEl.style.cssText = `

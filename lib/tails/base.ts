@@ -1,4 +1,4 @@
-import type { ITail, Options, Position } from '../types';
+import type { ITail, TailConfig, Position } from '../types';
 
 export default abstract class BaseTail implements ITail {
   protected x: number; //x轴坐标
@@ -10,9 +10,9 @@ export default abstract class BaseTail implements ITail {
   protected angle: number; //角度
   protected va: number; //角速度
   protected vo: number; //透明度变化速度
-  protected options: Options; //参数
+  protected options: TailConfig; //参数
   public active: boolean; //是否被激活
-  constructor(options: Options, position: Position) {
+  constructor(options: TailConfig, position: Position) {
     this.options = options;
     this.x = position.x;
     this.y = position.y;

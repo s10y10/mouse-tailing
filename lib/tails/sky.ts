@@ -1,4 +1,4 @@
-import type { Options, Position } from '../types';
+import type { TailConfig, Position } from '../types';
 import BaseTail from './base';
 
 type SkyStar = {
@@ -23,7 +23,7 @@ export default class Sky extends BaseTail {
   private limitDistance: number = 0;
   private container: HTMLElement = document.body;
 
-  constructor(options: Options, position: Position) {
+  constructor(options: TailConfig, position: Position) {
     super(options, position);
     this.color = options.color || '#ffffff';
     this.lineColor = this.color;

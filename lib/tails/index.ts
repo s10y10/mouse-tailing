@@ -1,11 +1,11 @@
-import type { ITail, Position, Options } from '../types';
+import type { ITail, Position, TailConfig } from '../types';
 import Star from './star';
 import Circle from './circle';
 import Icon from './icon';
 import Heart from './heart';
 import Sky from './sky';
 
-export const createTail = (options: Options, position: Position): ITail => {
+export const createTail = (options: TailConfig, position: Position): ITail => {
   const { type } = options;
   switch (type) {
     case 'star':

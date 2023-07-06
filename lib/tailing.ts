@@ -1,6 +1,6 @@
 import { createTail } from './tails';
 import { appendChild, createCanvas } from './tools';
-import { ITail, Options } from './types';
+import { ITail, TailConfig } from './types';
 
 import type Sky from './tails/sky';
 
@@ -10,10 +10,10 @@ class MouseTailing {
   private w: number = 0;
   private h: number = 0;
   private tailList: Array<ITail> | null = [];
-  private options: Options | null;
+  private options: TailConfig | null;
   private container: HTMLElement | null = document.body;
   private rafId: number = -1;
-  constructor(options: Options) {
+  constructor(options: TailConfig) {
     this.options = options;
     const { el } = this.options;
     if (typeof el === 'string') {

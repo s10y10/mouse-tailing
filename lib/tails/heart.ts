@@ -1,11 +1,11 @@
-import type { Options, Position } from '../types';
+import type { TailConfig, Position } from '../types';
 import BaseTail from './base';
 
 export default class Heart extends BaseTail {
   private img!: HTMLImageElement;
   private loaded: boolean = true;
 
-  constructor(options: Options, position: Position) {
+  constructor(options: TailConfig, position: Position) {
     super(options, position);
     this.initParams();
   }

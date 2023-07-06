@@ -5,7 +5,7 @@ export interface ITail {
 
 export type TailType = 'star' | 'circle' | 'heart' | 'icon' | 'sky';
 
-export interface Options {
+export interface TailConfig {
   el?: HTMLElement | string;
   color?: string;
   type?: TailType;

@@ -1,4 +1,4 @@
-import type { Options, Position } from '../types';
+import type { TailConfig, Position } from '../types';
 import { getRandomColor } from '../tools';
 import BaseTail from './base';
 
@@ -13,7 +13,7 @@ export default class Star extends BaseTail {
   private color: string = ''; //星星颜色
   private starTrackMap: Map<number, Track> = new Map();
 
-  constructor(options: Options, position: Position) {
+  constructor(options: TailConfig, position: Position) {
     super(options, position);
     this.initParams();
   }

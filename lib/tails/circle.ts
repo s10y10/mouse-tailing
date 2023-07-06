@@ -1,4 +1,4 @@
-import type { Options, Position } from '../types';
+import type { TailConfig, Position } from '../types';
 import { getRandomColor } from '../tools';
 import BaseTail from './base';
 
@@ -6,7 +6,7 @@ export default class Bubble extends BaseTail {
   private r: number = 7; //圆圈半径
   private color: string; //圆圈颜色
 
-  constructor(options: Options, position: Position) {
+  constructor(options: TailConfig, position: Position) {
     super(options, position);
     this.color = options.color || getRandomColor();
   }
