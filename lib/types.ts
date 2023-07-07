@@ -3,7 +3,16 @@ export interface ITail {
   active: boolean;
 }
 
-export type TailType = 'star' | 'circle' | 'heart' | 'icon' | 'sky';
+export interface IEffect extends Pick<ITail, 'render'> {
+  effect(params: any): void;
+}
+
+export interface IDestroy {
+  destroy(): void;
+}
+
+export type TailType = 'star' | 'circle' | 'heart' | 'icon';
+export type EffectType = 'sky';
 
 export interface TailConfig {
   el?: HTMLElement | string;
@@ -14,6 +23,10 @@ export interface TailConfig {
   url?: string;
   className?: string;
   resource?: CanvasImageSource;
+}
+
+export interface EffectConfig extends Omit<TailConfig, 'type' | 'resource'> {
+  type?: EffectType;
 }
 
 export interface Position {

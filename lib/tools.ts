@@ -1,4 +1,22 @@
-import type { TailType, TailConfig } from './types';
+import type {
+  EffectConfig,
+  EffectType,
+  Position,
+  TailConfig,
+  TailType,
+} from '@/types';
+
+export const formatEvent = (e: MouseEvent | TouchEvent): Position => {
+  const x =
+    e instanceof MouseEvent
+      ? e.pageX
+      : e.changedTouches[0] && e.changedTouches[0].pageX;
+  const y =
+    e instanceof MouseEvent
+      ? e.pageY
+      : e.changedTouches[0] && e.changedTouches[0].pageY;
+  return { x, y };
+};
 
 /**
  * 随机一个6位16进制的颜色
@@ -20,7 +38,7 @@ export const appendChild = (container: HTMLElement, child: HTMLElement) => {
   container.appendChild(child);
 };
 
-export const getFilter = (type: TailType): string => {
+export const getFilter = (type: TailType | EffectType): string => {
   if (['circle', 'heart', 'star', 'sky'].includes(type)) {
     return 'filter:contrast(200%) brightness(200%);';
   }
@@ -34,7 +52,7 @@ export const getFilter = (type: TailType): string => {
 export const createCanvas = ({
   type,
   className,
-}: TailConfig): HTMLCanvasElement => {
+}: EffectConfig | TailConfig): HTMLCanvasElement => {
   const canvasEl: HTMLCanvasElement = document.createElement('canvas');
   canvasEl.className = className!;
   canvasEl.style.cssText = `

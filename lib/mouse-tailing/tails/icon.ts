@@ -1,4 +1,4 @@
-import type { TailConfig, Position } from '../types';
+import type { Position, TailConfig } from '@/types';
 import BaseTail from './base';
 
 export default class Icon extends BaseTail {
@@ -7,12 +7,13 @@ export default class Icon extends BaseTail {
   }
 
   render(ctx: CanvasRenderingContext2D): void {
-    const { scale, x, y, vx, vy, angle, va, vo } = this;
+    const { scale, x, y, vx, vy, angle, va, vo, opacity } = this;
     const { resource } = this.options;
     ctx.save();
     ctx.translate(x, y);
     ctx.scale(scale, scale);
     ctx.rotate(angle);
+    ctx.globalAlpha = opacity;
     ctx.drawImage(resource!, 0, 0);
     ctx.restore();
     this.x += vx;

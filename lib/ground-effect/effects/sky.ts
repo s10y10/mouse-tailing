@@ -1,5 +1,5 @@
-import type { TailConfig, Position } from '../types';
-import BaseTail from './base';
+import type { EffectConfig, Position } from '@/types';
+import BaseEffect from './base';
 
 type SkyStar = {
   x: number;
@@ -10,7 +10,7 @@ type SkyStar = {
   o0: number;
 };
 
-export default class Sky extends BaseTail {
+export default class Sky extends BaseEffect {
   private r: number = 2; //星星半径
   private color: string; //星星颜色
   private num: number = 120;
@@ -23,7 +23,7 @@ export default class Sky extends BaseTail {
   private limitDistance: number = 0;
   private container: HTMLElement = document.body;
 
-  constructor(options: TailConfig, position: Position) {
+  constructor(options: EffectConfig, position: Position) {
     super(options, position);
     this.color = options.color || '#ffffff';
     this.lineColor = this.color;
@@ -113,7 +113,7 @@ export default class Sky extends BaseTail {
    * 设置连线的计算点
    * @param pos
    */
-  setPos(pos: Position) {
+  effect(pos: Position) {
     this.lastPos = pos;
   }
 

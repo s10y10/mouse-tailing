@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import dts from 'vite-plugin-dts';
 
 export default defineConfig({
   build: {
@@ -9,4 +10,10 @@ export default defineConfig({
       name: 'MouseTailing',
     },
   },
+  resolve: {
+    alias: {
+      '@': resolve('./lib'),
+    },
+  },
+  plugins: [dts({ insertTypesEntry: true, exclude: 'example' })],
 });

@@ -1,13 +1,16 @@
+import { createGroundEffect, createMouseTailing } from '../lib';
 import './style.css';
 
-import { createMouseTailing } from '../lib';
+createMouseTailing({
+  type: 'heart',
+  count: 1,
+  color: '#ffff00',
+  el: '.container-star',
+});
 
-// import { createMouseTailing } from 'mouse-tailing';
-
-// createMouseTailing({ type: 'sky', el: '.container-sky' });
-// createMouseTailing({ type: 'star', el: '.container-star' });
-
-const t = createMouseTailing({ type: 'heart', count: 1, color: '#ffff00' });
-// setTimeout(() => {
-//   t.destroy();
-// }, 5e3);
+createGroundEffect({
+  type: 'sky',
+  count: 1,
+  color: '#ffff00',
+  el: '.container-sky',
+});

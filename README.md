@@ -10,21 +10,17 @@
 npm install --save mouse-tailing
 ```
 
-## mouse-tailing API
-### createMouseTailing 创建鼠标拖尾
+## 使用
+##  创建鼠标拖尾
 
 ```
 import { createMouseTailing } from 'mouse-tailing'
 createMouseTailing(TailConfig)
 ```
-
-### `createMouseTailing()` 接受一个 <b>TailConfig</b> 对象类型
-
-### TailConfig 拖尾配置，所有字段均为非必传项
-
 ```
-{
-    // 拖尾类型 star|circle|heart|icon|sky
+参数
+export interface TailConfig = {
+    // 拖尾类型 star|circle|heart|icon
     type:'star',
 
     // 显示拖尾用的dom容器,可以直接传一个HTMLElement对象或者一个querySelector字符串
@@ -44,5 +40,18 @@ createMouseTailing(TailConfig)
 
     // 当type=icon时,需要传入icon的url
     url:'http://xxxxxx'
+}
+```
+
+## 创建画布特效
+```
+import { createGroundEffect } from 'mouse-tailing'
+createGroundEffect(EffectConfig)
+```
+```
+参数
+export interface EffectConfig extends Omit<TailConfig, 'type' | 'resource'> {
+  // 效果类型 sky
+  type?: EffectType;
 }
 ```

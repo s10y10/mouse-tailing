@@ -1,5 +1,5 @@
-import type { TailConfig, Position } from '../types';
-import { getRandomColor } from '../tools';
+import { getRandomColor } from '@/tools';
+import type { Position, TailConfig } from '@/types';
 import BaseTail from './base';
 
 interface Track {

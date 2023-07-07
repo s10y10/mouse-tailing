@@ -1,6 +1,6 @@
-import type { ITail, TailConfig, Position } from '../types';
+import type { EffectConfig, IEffect, Position } from '@/types';
 
-export default abstract class BaseTail implements ITail {
+export default abstract class BaseEffect implements IEffect {
   protected x: number; //x轴坐标
   protected y: number; //y轴坐标
   protected vx: number; //x轴速度
@@ -10,9 +10,9 @@ export default abstract class BaseTail implements ITail {
   protected angle: number; //角度
   protected va: number; //角速度
   protected vo: number; //透明度变化速度
-  protected options: TailConfig; //参数
+  protected options: EffectConfig; //参数
   public active: boolean; //是否被激活
-  constructor(options: TailConfig, position: Position) {
+  constructor(options: EffectConfig, position: Position) {
     this.options = options;
     this.x = position.x;
     this.y = position.y;
@@ -27,4 +27,6 @@ export default abstract class BaseTail implements ITail {
   }
 
   abstract render(ctx: CanvasRenderingContext2D): void;
+
+  abstract effect(params: any): void;
 }

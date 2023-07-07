@@ -1,14 +1,16 @@
 {
   "name": "mouse-tailing",
   "private": false,
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "屏幕鼠标拖尾效果",
   "type": "module",
   "files": [
-    "dist",
-    "types"
+    "dist"
   ],
-  "typings": "./types/index.d.ts",
+  "engines": {
+    "node": ">=16"
+  },
+  "types": "./dist/index.d.ts",
   "main": "./dist/mouse-tailing.umd.cjs",
   "module": "./dist/mouse-tailing.js",
   "exports": {
@@ -22,7 +24,10 @@
     "url": "git+https://github.com/s10y10/mouse-tailing.git"
   },
   "keywords": [
-    "拖尾"
+    "拖尾",
+    "tail",
+    "background",
+    "effect"
   ],
   "author": "s10y10",
   "license": "MIT",
@@ -32,14 +37,16 @@
   "homepage": "https://github.com/s10y10/mouse-tailing",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build",
-    "dts": "tsc -d",
+    "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "publish": "npm publish --access=public --registry=https://registry.npmjs.org/"
+    "publish": "npm publish --access=public --registry=https://registry.npmjs.org/",
+    "publish:beta": "npm publish --access=public --registry=https://registry.npmjs.org/ --tag=beta"
   },
   "devDependencies": {
-    "@types/node": "^20.1.1",
-    "typescript": "^5.0.4",
-    "vite": "^4.3.5"
+    "@types/node": "^20.5.7",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9",
+    "vite-plugin-dts": "^3.5.3",
+    "vue-tsc": "^1.8.8"
   }
 }

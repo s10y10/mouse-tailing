@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "mouse-tailing": "0.0.8"
+    "mouse-tailing": "0.2.0"
   }
 }
